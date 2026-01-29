@@ -10,7 +10,8 @@ cursor.execute(
     '''
     create table silver_orders as 
     select 
-        c.customer_id, 
+        c.customer_id,
+        c.country, 
         c.name, 
         c.reg_date, 
         o.order_id, 
@@ -22,3 +23,6 @@ cursor.execute(
     on c.customer_id = o.customer_id
     '''
 )
+
+conn.commit()
+conn.close()
