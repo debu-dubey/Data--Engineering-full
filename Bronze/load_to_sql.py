@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd 
 
-conn = sqlite3.connect('globalshop360.db')
+conn = sqlite3.connect('/workspaces/Data--Engineering-full/globalshop360.db')
 cursor = conn.cursor()
 
 cursor.execute(
@@ -31,8 +31,8 @@ cursor.execute(
 customers_df = pd.read_csv('customers.csv')
 orders_df = pd.read_csv('orders.csv')
 
-customers_df.to_sql('CUSTOMERS' , conn, if_exists = 'append', index=False)
-orders_df.to_sql('ORDERS' , conn, if_exists = 'append', index=False)
+customers_df.to_sql('CUSTOMERS' , conn, if_exists = 'replace', index=False)
+orders_df.to_sql('ORDERS' , conn, if_exists = 'replace', index=False)
 
 conn.commit()
 conn.close()
